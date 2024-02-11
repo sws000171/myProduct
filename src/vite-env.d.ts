@@ -1,5 +1,6 @@
 /// <reference types="vite/client" />
 
+import { Token } from "typescript"
 import { readonly } from "vue"
 
 interface ImportMetaEnv {
@@ -14,7 +15,7 @@ interface ImportMetaEnv {
   readonly VITE_CLIENT_ID: string
   readonly VITE_CLIENT_SECRET: string
   readonly VITE_CALLBACK: string
-  readonly VITE_TOKEN: Token
+  readonly VITE_TOKEN: token
 }
 
 interface ImportMeta {
