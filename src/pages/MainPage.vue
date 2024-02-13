@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-import { Timestamp, collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, doc, deleteDoc, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
-import {tweet} from '../common/tweet';
+//import {tweet} from '../common/tweet';
 
 const isLoading = ref(false)
 const error = ref()
-const tweets = ref()
+const myDiary = ref()
+
+const diaryCollection = collection(db, 'myDiary');
+const diaryQuery = query(diaryCollection, orderBy('date', 'desc'));
 
 onMounted(() => {
     getFirebase() 
@@ -16,19 +19,18 @@ onMounted(() => {
 const getFirebase = async () =>{
   isLoading.value = true
   try {
-    onSnapshot(collection(db, 'tweets'), (QuerySnapshot) => {
-      const fbTweet: { id: string; tweet: string; time: Timestamp; flg: boolean; }[] = [];
+    onSnapshot(diaryQuery, (QuerySnapshot) => {
+      const fbDiary: { id: string; title: string; text: string; }[] = [];
       QuerySnapshot.forEach((doc) => {
-        const tweet = {
+        const diary = {
           id: doc.id,
-          tweet: doc.data().tweet,
-          time: doc.data().time,
-          flg: doc.data().flg,
+          title: doc.data().title,
+          date: formatDateTime(doc.data().date.toDate()),
+          text: doc.data().text,
         };
-        fbTweet.push(tweet);
+        fbDiary.push(diary);
       });
-      tweets.value = fbTweet;
-      console.log(tweets);
+      myDiary.value = fbDiary;
     });
   } catch (e) {
     error.value = e
@@ -36,8 +38,21 @@ const getFirebase = async () =>{
     isLoading.value = false
   }
 }
+function formatDateTime(date:Date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    return `${year}/${month}/${day} ${hours}:${minutes}`;
+}
 
 
+function deleteDiary(id:string) {
+
+  deleteDoc(doc(diaryCollection,id))
+  console.log('delete');
+}
 
 </script>
 
@@ -47,18 +62,20 @@ const getFirebase = async () =>{
     <div v-if="isLoading">Loading...</div>
     <div v-else>
       <ul class="list-group">
-      <div v-for="tweet in tweets" key="id">
+      <div v-for="diary in myDiary" key="id">
         <li class="list-group-item">
-            {{ tweet.tweet }}
-            <button id="button" class="btn btn-sm btn-info">編集</button>
-            <button id="button" class="btn btn-sm btn-info">削除</button>
+            {{ diary.title }}{{ diary.date }}
+            <button class="btn btn-sm btn-info" @click="$router.push('/edit')">表示</button>
+            <button class="btn btn-sm btn-info" @click="deleteDiary(diary.id)">削除</button>
         </li>
           
         
       </div>
     </ul>
     </div>
+    <!--
     <button id="button" class="btn btn-sm btn-info" @click="tweet()">tweet</button>
+    -->
   </div>
 </template>
 
