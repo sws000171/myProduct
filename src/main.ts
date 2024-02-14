@@ -15,6 +15,7 @@ import MainPage from "./pages/MainPage.vue";
 import TweetPage from "./pages/TweetPage.vue";
 import CreatePage from "./pages/CreatePage.vue";
 import EditPage from './pages/EditPage.vue';
+import ReadPage from './pages/ReadPage.vue';
 
 // 各画面のルーティング情報を記述する
 const routes: Array<RouteRecordRaw> = [
@@ -26,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/create",
     component: CreatePage,
+  },
+  {
+    path: "/read",
+    name :"ReadPAge",
+    component: ReadPage,
   },
   {
     path: "/edit",

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { db } from '../../firebase/firebase';
+//import { db } from '../../firebase/firebase';
 
 
 </script>
