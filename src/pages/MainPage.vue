@@ -4,8 +4,6 @@ import {useRouter} from 'vue-router'
 
 import { collection, onSnapshot, doc, deleteDoc, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
-//import {tweet} from '../common/tweet';
-
 
 const isLoading = ref(false)
 const error = ref()
@@ -58,11 +56,8 @@ function deleteDiary(id:string) {
 const router = useRouter();
 function readpage(id:string){
   console.log(id);
-  router.push({name:"ReadPAge", query:{readId:id}});
-  //router.push({name:"ReadPAge"});
+  router.push({name:"ReadPage", query:{readId:id}});
 }
-
-
 </script>
 
 <template>
@@ -81,19 +76,12 @@ function readpage(id:string){
           <tr v-for="diary in myDiary" key="id">  
             <td>{{ diary.title }}</td>
             <td>{{ diary.date }}</td>
-            <!--
-            <td><button class="btn btn-sm btn-info" @click="$router.push('/read')">表示</button></td>
-            -->
             <td><button class="btn btn-sm btn-info" @click="readpage(diary.id)">表示</button></td>
             <td><button class="btn btn-sm btn-info" @click="deleteDiary(diary.id)">削除</button></td>
           </tr>
         </tbody>
       </table>
-      <router-link to="/read">Link Text</router-link>
     </div>
-    <!--
-    <button id="button" class="btn btn-sm btn-info" @click="tweet()">tweet</button>
-    -->
   </div>
 </template>
 

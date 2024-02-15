@@ -14,14 +14,13 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import MainPage from "./pages/MainPage.vue";
 import TweetPage from "./pages/TweetPage.vue";
 import CreatePage from "./pages/CreatePage.vue";
-import EditPage from './pages/EditPage.vue';
 import ReadPage from './pages/ReadPage.vue';
 
 // 各画面のルーティング情報を記述する
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "AppPage",
+    name: "MainPage",
     component: MainPage,
   },
   {
@@ -30,12 +29,8 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/read",
-    name :"ReadPAge",
+    name :"ReadPage",
     component: ReadPage,
-  },
-  {
-    path: "/edit",
-    component: EditPage,
   },
   {
     path: "/tweet",
