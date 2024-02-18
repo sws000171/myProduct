@@ -4,6 +4,7 @@ import { db } from '../../firebase/firebase';
 import { doc,getDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { onMounted,ref,inject, watch } from 'vue';
 import { useRoute,useRouter } from 'vue-router';
+import {resizeTextArea} from '../common/resizeTextArea'
 
 //query部分の取得
 const route = useRoute();
@@ -13,20 +14,23 @@ const isLoading = ref(false);
 let editFlg = ref(false);
 let strReadId =String(readId);
 
+const refText = ref();
+
 //他コンポーネントからデータを受け取る
 let injectEditFlg = ref(inject('appEditFlg'));
 let injectDeleteFlg = ref(inject('appDeleteFlg'));
 
 let data = ref({
-  title:"",
-  text:""
+  title: "",
+  text: ""
 });
 
 onMounted(()=>{
   readData()
+  resizeTextArea(refText)
 });
 
-//firebase 読み込み
+//firebase read
 const readData = async () =>{
 
   isLoading.value = true
@@ -49,7 +53,6 @@ const readData = async () =>{
     isLoading.value = false
   }
 };
-
 //firebase update
 const updateData = async () =>{
   const docRef = doc(db, "myDiary", strReadId);
@@ -58,13 +61,11 @@ const updateData = async () =>{
     text:data.value.text,
   });
 };
-
 //firestore delte
 const deleteDiary = ()=> {
   console.log("delete!!!");
   deleteDoc(doc(db, "myDiary", strReadId));
 }
-
 //ナビゲーションバーのeditがクリックされた場合
 const editJudge = ()=>{
   if (injectEditFlg.value == true) {
@@ -78,7 +79,17 @@ const editJudge = ()=>{
     return false;
   }
 }
-
+//更新処理
+const updateDiary = ()=>{
+  const fieldsetElement = document.querySelector('fieldset');
+  if (fieldsetElement) {
+    fieldsetElement.disabled = true;
+    editFlg.value = false;
+    updateData();
+    injectEditFlg.value = false;
+  }
+}
+//削除処理
 const router = useRouter();
 const showModal = ref(false) // モーダルの表示状態
 watch(injectDeleteFlg,()=> {
@@ -89,38 +100,29 @@ watch(injectDeleteFlg,()=> {
     router.push({name:"MainPage"});
   }
 });
-
-//firebase 更新
-const updateDiary = ()=>{
-  const fieldsetElement = document.querySelector('fieldset');
-  if (fieldsetElement) {
-    fieldsetElement.disabled = true;
-    editFlg.value = false;
-    updateData();
-    injectEditFlg.value = false;
-  }
-}
-
+//テキストエリアのリサイズ
+watch(data.value,()=>{
+  resizeTextArea(refText);
+});
 </script>
 
 <template>
-  <fieldset disabled>
+  <fieldset disabled class="body">
   <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Title</label>
     <input type="text" v-model="data.title" class="form-control" id="exampleFormControlInput1">
   </div>
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Text</label>
-    <textarea ref="vtext" v-model="data.text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <textarea ref="refText" v-model="data.text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
 </fieldset>
 <td>
-<a v-if="editJudge()">
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
-    Update
-  </button>
-</a>
-
+  <a v-if="editJudge()">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
+      Update
+    </button>
+  </a>
 </td>
 
 <!-- update Modal -->
@@ -141,10 +143,10 @@ const updateDiary = ()=>{
     </div>
   </div>
 </div>
-
-
-
 </template>
 
 <style scoped lang="scss"> 
+.body{ 
+  padding-top: 60px; 
+}
 </style>

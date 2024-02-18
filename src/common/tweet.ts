@@ -1,3 +1,7 @@
+//ボツ
+//サーバーサイド(node.js)でないと実施できない。
+//かつ、oauth2.0トークンの取得方法が不明。
+
 import { Client,auth } from 'twitter-api-sdk';
 //import { Token } from 'typescript';
 import { Buffer } from 'buffer';

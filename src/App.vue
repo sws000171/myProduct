@@ -20,6 +20,7 @@ provide('appDeleteFlg', appDeleteFlg);
 </script>
 
 <template>
+  <div class='fixed-top'>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
       <!--<a class="navbar-brand" href="/">MyDiary</a>-->
@@ -51,6 +52,7 @@ provide('appDeleteFlg', appDeleteFlg);
       </div>
     </div>
   </nav>
+  </div>
   <RouterView />
 
   <!-- Dlete Modal -->
@@ -66,8 +68,7 @@ provide('appDeleteFlg', appDeleteFlg);
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="deleteSetting">Save
-            changes</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="deleteSetting">Delete data</button>
         </div>
       </div>
     </div>

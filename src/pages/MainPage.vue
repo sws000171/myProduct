@@ -57,7 +57,7 @@ const diaryPage = (id:string)=>{
 </script>
 
 <template>
-  <div>
+  <div class="body">
     <h1>My Diary</h1>
     <div v-if="isLoading">Loading...</div>
     <div v-else>
@@ -78,5 +78,7 @@ const diaryPage = (id:string)=>{
 </template>
 
 <style scoped lang="scss">
-
+.body{ 
+  padding-top: 60px; 
+}
 </style>
