@@ -14,7 +14,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import MainPage from "./pages/MainPage.vue";
 import TweetPage from "./pages/TweetPage.vue";
 import CreatePage from "./pages/CreatePage.vue";
-import ReadPage from './pages/ReadPage.vue';
+import DiaryPage from "./pages/DiaryPage.vue";
 
 // 各画面のルーティング情報を記述する
 const routes: Array<RouteRecordRaw> = [
@@ -28,9 +28,9 @@ const routes: Array<RouteRecordRaw> = [
     component: CreatePage,
   },
   {
-    path: "/read",
-    name :"ReadPage",
-    component: ReadPage,
+    path: "/diary",
+    name :"DiaryPage",
+    component: DiaryPage,
   },
   {
     path: "/tweet",
