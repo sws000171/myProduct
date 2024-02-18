@@ -11,7 +11,6 @@ const route = useRoute();
 const { readId } = route.query;
 
 const isLoading = ref(false);
-let editFlg = ref(false);
 let strReadId =String(readId);
 
 const refText = ref();
@@ -72,7 +71,6 @@ const editJudge = ()=>{
     const fieldsetElement = document.querySelector('fieldset');
     if (fieldsetElement) {
       fieldsetElement.disabled = false;
-      editFlg.value = true;
     }
     return true;
   }else{
@@ -84,7 +82,6 @@ const updateDiary = ()=>{
   const fieldsetElement = document.querySelector('fieldset');
   if (fieldsetElement) {
     fieldsetElement.disabled = true;
-    editFlg.value = false;
     updateData();
     injectEditFlg.value = false;
   }

@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 
-onMounted(() => {
-  // Twitterウィジェットのスクリプトを読み込む
-  const script = document.createElement('script');
-  script.src = 'https://platform.twitter.com/widgets.js';
-  script.async = true;
-  document.body.appendChild(script);
-});
+// Twitterウィジェットのスクリプトを読み込む
+const script = document.createElement('script');
+script.src = 'https://platform.twitter.com/widgets.js';
+script.async = true;
+document.body.appendChild(script);
 
 </script>
 
