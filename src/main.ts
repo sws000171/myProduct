@@ -26,7 +26,6 @@ library.add(faHouse,faPencil,faNoteSticky,faTrashCan);
 
 // VueRouter
 import MainPage from "./pages/MainPage.vue";
-import TweetPage from "./pages/TweetPage.vue";
 import CreatePage from "./pages/CreatePage.vue";
 import DiaryPage from "./pages/DiaryPage.vue";
 import LoginPage from "./pages/Login.vue";
@@ -52,11 +51,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/diary",
     name :"DiaryPage",
     component: DiaryPage,
-  },
-  {
-    path: "/tweet",
-    name: "TweetPage",
-    component: TweetPage,
   },
   {
     path: "/login",
