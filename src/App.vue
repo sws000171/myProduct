@@ -8,7 +8,7 @@ let appEditFlg = ref(false);
 let appDeleteFlg = ref(false);
 
 const isRead = ()=> route.path === "/diary";
-const isMain =()=> route.path === "/";
+const isMain = ()=> route.path === "/";
 
 const editSetting = ()=> appEditFlg.value = true;
 const deleteSetting = ()=> appDeleteFlg.value = true;
@@ -47,12 +47,6 @@ provide('appDeleteFlg', appDeleteFlg);
             <a class="nav-link" data-bs-toggle="modal" data-bs-target="#deleteModal">
               <font-awesome-icon icon="fa-solid fa-trash-can" /> Delete</a>
           </li>
-
-          <!-- 実現できなかったtwitter bot の更新内容確認用に作成した画面
-          <li class="nav-item">
-            <a class="nav-link" href="/tweet">tweet</a>
-          </li>
-          -->
         </ul>
       </div>
     </div>

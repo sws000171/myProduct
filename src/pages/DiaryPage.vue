@@ -160,4 +160,4 @@ watch(data.value,()=>{
   padding-top: 60px;
   padding-left: 1%; 
 }
-</style>../common/common
+</style>
