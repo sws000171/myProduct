@@ -45,6 +45,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/create",
+    name: "CreatePage",
     component: CreatePage,
   },
   {
@@ -83,3 +84,4 @@ router.beforeEach(async (to) => {
 });
 
 createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+export default router;
