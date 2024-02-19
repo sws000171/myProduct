@@ -4,6 +4,7 @@ import {useRouter} from 'vue-router'
 
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
+import {formatDateTime } from '../common/common'
 
 const isLoading = ref(false)
 const error = ref()
@@ -39,16 +40,6 @@ const getFirebase = async () =>{
   }
 }
 
-//timestamp to yy/mm/dd hh:mm
-const formatDateTime = (date:Date)=> {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    return `${year}/${month}/${day} ${hours}:${minutes}`;
-}
-
 const router = useRouter();
 //diary page
 const diaryPage = (id:string)=>{
@@ -64,7 +55,7 @@ const diaryPage = (id:string)=>{
       <table class="table table-striped table-hover table-bordered">
         <thead class="table-light">
         <tr class="tr-a">
-          <th class="th-a">date</th>
+          <th class="th-a">Create Date</th>
           <th class="th-b">Title</th>
         </tr>
       </thead>

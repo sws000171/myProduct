@@ -3,7 +3,7 @@ import { db } from '../../firebase/firebase'
 import { ref, watch } from 'vue'
 import { collection, addDoc, Timestamp} from "firebase/firestore"
 import {useRouter} from 'vue-router'
-import {resizeTextArea} from '../common/resizeTextArea'
+import {resizeTextArea} from '../common/common'
 
 const router = useRouter();
 const data = ref({
@@ -68,4 +68,4 @@ watch(data.value,()=>{
   padding-top: 60px; 
   padding-left: 1%;
 }
-</style>
+</style>../common/common
