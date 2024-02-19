@@ -109,13 +109,13 @@ watch(data.value,()=>{
   <fieldset disabled class="body">
   <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Title</label>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <input type="text" v-model="data.title" class="form-control" id="exampleFormControlInput1">
     </div>
   </div>
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Text</label>
-    <div class="col-md-10">
+    <div class="col-md-8">
       <textarea ref="refText" v-model="data.text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
   </div>
