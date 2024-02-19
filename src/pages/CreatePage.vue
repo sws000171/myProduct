@@ -31,11 +31,15 @@ watch(data.value,()=>{
   <div class="body">
   <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Title</label>
-    <input type="text" v-model="data.title" class="form-control" id="exampleFormControlInput1">
+    <div class="col-md-6">
+      <input type="text" v-model="data.title" class="form-control" id="exampleFormControlInput1">
+    </div>
   </div>
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Text</label>
-    <textarea v-model="data.text" ref="refText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <div class="col-md-10">
+      <textarea v-model="data.text" ref="refText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
   </div>  
   <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Submit</button>
   </div>
@@ -52,7 +56,7 @@ watch(data.value,()=>{
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="writeData" >Create data</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="writeData" >Create diary</button>
       </div>
     </div>
   </div>
@@ -62,5 +66,6 @@ watch(data.value,()=>{
 <style scoped lang="scss">
 .body{ 
   padding-top: 60px; 
+  padding-left: 1%;
 }
 </style>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { db } from '../../firebase/firebase';
-import { doc,getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { doc,getDoc, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
 import { onMounted,ref,inject, watch } from 'vue';
 import { useRoute,useRouter } from 'vue-router';
 import {resizeTextArea} from '../common/resizeTextArea'
@@ -21,7 +21,8 @@ let injectDeleteFlg = ref(inject('appDeleteFlg'));
 
 let data = ref({
   title: "",
-  text: ""
+  text: "",
+  upadate: ""
 });
 
 onMounted(()=>{
@@ -58,6 +59,7 @@ const updateData = async () =>{
   await updateDoc(docRef,{
     title:data.value.title,
     text:data.value.text,
+    update: Timestamp.fromDate(new Date())
   });
 };
 //firestore delte
@@ -107,11 +109,15 @@ watch(data.value,()=>{
   <fieldset disabled class="body">
   <div class="mb-3">
     <label for="exampleFormControlInput1" class="form-label">Title</label>
-    <input type="text" v-model="data.title" class="form-control" id="exampleFormControlInput1">
+    <div class="col-md-6">
+      <input type="text" v-model="data.title" class="form-control" id="exampleFormControlInput1">
+    </div>
   </div>
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Text</label>
-    <textarea ref="refText" v-model="data.text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <div class="col-md-10">
+      <textarea ref="refText" v-model="data.text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
   </div>
 </fieldset>
 <td>
@@ -144,6 +150,7 @@ watch(data.value,()=>{
 
 <style scoped lang="scss"> 
 .body{ 
-  padding-top: 60px; 
+  padding-top: 60px;
+  padding-left: 1%; 
 }
 </style>

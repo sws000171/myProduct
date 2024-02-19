@@ -31,16 +31,20 @@ provide('appDeleteFlg', appDeleteFlg);
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">
+              <font-awesome-icon icon="fa-solid fa-house" /> Home</a>
           </li>
           <li v-if="isMain()" class="nav-item">
-            <a class="nav-link" href="/create">Create</a>
+            <a class="nav-link" href="/create">
+              <font-awesome-icon icon="fa-solid fa-note-sticky" /> Create</a>
           </li>
           <li v-if="isRead()" class="nav-item">
-            <a class="nav-link" @click="editSetting()">Edit</a>
+            <a class="nav-link" @click="editSetting()">
+              <font-awesome-icon icon="fa-solid fa-pencil" /> Edit</a>
           </li>
           <li v-if="isRead()" class="nav-item">
-            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
+            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#deleteModal">
+              <font-awesome-icon icon="fa-solid fa-trash-can" /> Delete</a>
           </li>
 
           <!-- 実現できなかったtwitter bot の更新内容確認用に作成した画面
@@ -68,7 +72,7 @@ provide('appDeleteFlg', appDeleteFlg);
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="deleteSetting">Delete data</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="deleteSetting">Delete diary</button>
         </div>
       </div>
     </div>

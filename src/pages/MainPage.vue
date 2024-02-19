@@ -26,7 +26,7 @@ const getFirebase = async () =>{
           id: doc.id,
           title: doc.data().title,
           date: formatDateTime(doc.data().date.toDate()),
-          text: doc.data().text,
+          text: doc.data().text
         };
         fbDiary.push(diary);
       });
@@ -57,19 +57,21 @@ const diaryPage = (id:string)=>{
 </script>
 
 <template>
-  <div class="body">
-    <h1>My Diary</h1>
+  <h1 class="body">My Diary</h1>
+  <div class="t-body"> 
     <div v-if="isLoading">Loading...</div>
     <div v-else>
       <table class="table table-striped table-hover table-bordered">
-        <tr>
-          <th class="td-a">Title</th>
-          <th class="td-b">date</th>          
+        <thead class="table-light">
+        <tr class="tr-a">
+          <th class="th-a">date</th>
+          <th class="th-b">Title</th>
         </tr>
+      </thead>
         <tbody>
           <tr v-for="diary in myDiary" key="diary.id" ref="vtr" @click="diaryPage(diary.id)">
-            <td>{{ diary.title }}</td>
-            <td style="border-right: none;">{{ diary.date }}</td>
+            <td class="td-a">{{ diary.date }}</td>
+            <td class="td-b">{{ diary.title }}</td>
           </tr>
         </tbody>
       </table>
@@ -78,7 +80,20 @@ const diaryPage = (id:string)=>{
 </template>
 
 <style scoped lang="scss">
+.t-body{ 
+  padding-left: 2%;
+}
 .body{ 
+  padding-left: 1%;
   padding-top: 60px; 
+}
+.table{
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  width: 70%;
+}
+
+.th-a{
+  width: 150px;
 }
 </style>

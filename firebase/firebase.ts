@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from 'firebase/firestore'
+import { getAuth, setPersistence, browserSessionPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -17,5 +18,8 @@ const app = initializeApp(firebaseConfig);
 // アナリティクスの初期化
 getAnalytics(app);
 
-export const db = getFirestore(app);
+// Firebaseの認証機能
+export const auth = getAuth(app);
+setPersistence(auth, browserSessionPersistence);
 
+export const db = getFirestore(app);
