@@ -37,7 +37,7 @@ watch(data.value,()=>{
   </div>
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Text</label>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <textarea v-model="data.text" ref="refText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
   </div>  
