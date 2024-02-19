@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+import { useRoute,RouterLink } from 'vue-router';
 import { provide,ref } from 'vue';
 
 const route = useRoute();
@@ -35,8 +35,12 @@ provide('appDeleteFlg', appDeleteFlg);
               <font-awesome-icon icon="fa-solid fa-house" /> Home</a>
           </li>
           <li v-if="isMain()" class="nav-item">
+            <RouterLink v-bind:to="{name:'CreatePage'}" class="nav-link">
+            <!--
             <a class="nav-link" href="/create">
-              <font-awesome-icon icon="fa-solid fa-note-sticky" /> Create</a>
+            -->
+              <font-awesome-icon icon="fa-solid fa-note-sticky" /> Create
+            </RouterLink>
           </li>
           <li v-if="isRead()" class="nav-item">
             <a class="nav-link" @click="editSetting()">
