@@ -82,15 +82,17 @@ const diaryPage = (id:string)=>{
 <style scoped lang="scss">
 .t-body{ 
   padding-left: 2%;
+  padding-right: 2%;
 }
 .body{ 
   padding-left: 1%;
   padding-top: 60px; 
 }
 .table{
+  table-layout: fixed;
   border-collapse: collapse;
   border: 2px solid rgb(140 140 140);
-  width: 70%;
+  max-width: 800px;
 }
 
 .th-a{

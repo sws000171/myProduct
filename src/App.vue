@@ -36,9 +36,6 @@ provide('appDeleteFlg', appDeleteFlg);
           </li>
           <li v-if="isMain()" class="nav-item">
             <RouterLink v-bind:to="{name:'CreatePage'}" class="nav-link">
-            <!--
-            <a class="nav-link" href="/create">
-            -->
               <font-awesome-icon icon="fa-solid fa-note-sticky" /> Create
             </RouterLink>
           </li>
