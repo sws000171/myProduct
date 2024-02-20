@@ -97,6 +97,7 @@ watch(injectDeleteFlg,()=> {
     showModal.value = true;
     deleteDiary();
     injectDeleteFlg.value = false;
+    injectEditFlg.value = false; //バグ対応（edit状態で削除した場合を考慮）
     router.push({name:"MainPage"});
   }
 });
