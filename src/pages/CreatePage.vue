@@ -4,9 +4,12 @@ import { ref, watch } from 'vue'
 import { collection, addDoc, Timestamp} from "firebase/firestore"
 import {useRouter} from 'vue-router'
 import {resizeTextArea} from '../common/common'
+import { getAuth } from "firebase/auth"
 
 const router = useRouter();
+const auth = getAuth();
 const data = ref({
+  user: "",
   title: "",
   text: "",
 })
@@ -14,7 +17,9 @@ const refText = ref();
 
 //firebase create
 const writeData = async()=>{
+  //console.log("@1@",auth.currentUser?.uid);
   await addDoc(collection(db, "myDiary"), {
+    user: auth.currentUser?.uid,
     title: data.value.title,
     text: data.value.text,
     date: Timestamp.fromDate(new Date()),

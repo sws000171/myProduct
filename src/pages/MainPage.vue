@@ -2,16 +2,20 @@
 import { ref, onMounted } from 'vue'
 import {useRouter} from 'vue-router'
 
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import {formatDateTime } from '../common/common'
+import { getAuth } from "firebase/auth"
 
 const isLoading = ref(false)
 const error = ref()
 const myDiary = ref()
+const auth = getAuth();
 
+const uid = auth.currentUser?.uid;
+console.log("@1@",uid);
 const diaryCollection = collection(db, 'myDiary');
-const diaryQuery = query(diaryCollection, orderBy('date', 'desc'));
+const diaryQuery = query(diaryCollection, where('user','==',uid), orderBy('date', 'desc'));
 
 onMounted(() => {
     getFirebase() 
@@ -21,7 +25,7 @@ const getFirebase = async () =>{
   isLoading.value = true
   try {
     onSnapshot(diaryQuery, (QuerySnapshot) => {
-      const fbDiary: { id: string; title: string; text: string; }[] = [];
+      const fbDiary: { id: string; title: string; text: string; date:string }[] = [];
       QuerySnapshot.forEach((doc) => {
         const diary = {
           id: doc.id,

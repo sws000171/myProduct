@@ -1,9 +1,9 @@
 <script setup lang="ts">
 
-import { db } from '../../firebase/firebase';
-import { doc,getDoc, updateDoc, deleteDoc, Timestamp } from "firebase/firestore";
-import { onMounted, ref, inject, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { db } from '../../firebase/firebase'
+import { doc,getDoc, updateDoc, deleteDoc, Timestamp } from "firebase/firestore"
+import { onMounted, ref, inject, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import {resizeTextArea, formatDateTime } from '../common/common'
 
 //query部分の取得
