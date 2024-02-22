@@ -13,7 +13,6 @@ const myDiary = ref()
 const auth = getAuth();
 
 const uid = auth.currentUser?.uid;
-console.log("@1@",uid);
 const diaryCollection = collection(db, 'myDiary');
 const diaryQuery = query(diaryCollection, where('user','==',uid), orderBy('date', 'desc'));
 
